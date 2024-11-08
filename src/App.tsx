@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import { ReactElement } from 'react';
 import './App.css';
 import {
   RouterProvider,
@@ -6,28 +6,21 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import About from './pages/About';
 
-// Carica dinamicamente il componente Home usando React.lazy
-const Home = React.lazy(() => import('./pages/Home'));
-
+// Definisci il router una sola volta fuori dal componente App
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route
-        path="/"
-        element={
-          // Usa Suspense per il caricamento asyncrono del componente
-          <Suspense fallback={<div>Loading...</div>}>
-            <Home />
-          </Suspense>
-        }
-      />
+      <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/about" element={<About />} />
     </>
   )
 );
 
-function App() {
+export default function App(): ReactElement {
   return <RouterProvider router={router} />;
 }
-
-export default App;

@@ -1,8 +1,15 @@
+// tailwind.config.js
+const defaultConfig = require('tailwindcss/defaultConfig');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', ...defaultConfig.theme.fontFamily.sans],
+      },
+    },
   },
   plugins: [],
 };

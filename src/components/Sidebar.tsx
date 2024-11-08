@@ -1,10 +1,33 @@
+import { useNavigate } from 'react-router-dom';
 import Hambuger from '../icon/hamburger';
+import SidebarItem from './SidebarItem';
 
 interface ISidebar {
   isOpen: boolean;
 }
 
+const ItemSidebar = [
+  {
+    text: 'Home',
+    goTo: '/',
+  },
+  {
+    text: 'About',
+    goTo: '/about',
+  },
+  {
+    text: 'Contact',
+    goTo: '/contact',
+  },
+];
+
 const Sidebar = ({ isOpen }: ISidebar) => {
+  const navigate = useNavigate();
+
+  const handleClick = (destination: string) => {
+    navigate(destination);
+  };
+
   return (
     <>
       {isOpen && (
@@ -14,10 +37,14 @@ const Sidebar = ({ isOpen }: ISidebar) => {
           } transition-transform duration-1000 ease-out `}
         >
           <Hambuger className="m-[18px]" />
-          <ul className="mt-4 flex flex-col items-start p-4">
-            <li className="py-8 px-4">Home</li>
-            <li className="py-8 px-4">About</li>
-            <li className="py-8 px-4">Contact</li>
+          <ul className="mt-4 flex flex-col  ">
+            {ItemSidebar.map((item, key) => (
+              <SidebarItem
+                key={key}
+                text={item.text}
+                onClick={() => handleClick(item.goTo)}
+              />
+            ))}
           </ul>
         </div>
       )}

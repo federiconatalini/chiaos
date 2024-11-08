@@ -16,7 +16,7 @@ const Topbar = () => {
         <Sidebar isOpen={isOpen} />
       </button>
       <div className="w-full h-full flex justify-center items-center">
-        <h1>CHIAOS</h1>
+        <h1 className="font-sans">CHIAOS</h1>
       </div>
     </div>
   );
